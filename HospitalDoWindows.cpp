@@ -253,7 +253,6 @@ void ThreadOtimizacao(bool Antivirus, bool Temp, bool Compact, bool Add, bool Ca
         etapaAtual = (lingua == 'p') ? "Limpando Caches..." : "Cleaning Caches...";
         ExecutarComLog("ipconfig /flushdns");
         ExecutarComLog("cmd.exe /c \"net stop wuauserv /y && timeout /t 2 /nobreak >nul && rmdir /s /q %systemroot%\\SoftwareDistribution\\Download && mkdir %systemroot%\\SoftwareDistribution\\Download && net start wuauserv /y\"");
-        ExecutarComLog("cmd.exe /c \"pnputil /delete-driver oem*.inf /uninstall /force\"");
         ExecutarComLog("cmd.exe /c \"pushd %localappdata%\\D3DSCache && rmdir /s /q . 2>nul\"");
     }
 
