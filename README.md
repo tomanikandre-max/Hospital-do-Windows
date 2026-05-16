@@ -46,7 +46,7 @@ O **Hospital do Windows** automatiza diversos processos úteis de manutenção d
 1. Vá na aba **Releases** do GitHub e baixe o executável do programa:
 
 [Baixar Hospital do Windows](https://github.com/tomanikandre-max/Hospital-do-Windows/releases)
-ou [baixe o código fonte](https://github.com/tomanikandre-max/Hospital-do-Windows/archive/refs/heads/main.zip) e siga o [intruções.md]() para compilar.
+ou [baixe o código fonte](https://github.com/tomanikandre-max/Hospital-do-Windows/archive/refs/heads/main.zip) e siga o [intruções.md](https://github.com/tomanikandre-max/Hospital-do-Windows/blob/main/Instru%C3%A7%C3%B5es.md) para compilar.
 * Execute o programa.
 
 3. Escolha sua linguagem:
