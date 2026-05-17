@@ -6,7 +6,7 @@ Se você não estiver confiando no release pronto, estas instruções mostram de
 * Baixe o [Raygui.h](https://github.com/raysan5/raygui/archive/refs/tags/4.0.zip)
 * Baixe [Sophos scan & clean](https://www.oldergeeks.com/downloads/download.php?id=3646) e renomeie para **Antivirus.exe**.
 # Configurações do Visual Studio
-* Coloque o Raygui na pasta em que está o AsepriteAutoBuild.cpp
+* Coloque o Raygui na pasta em que está o **HospitalDoWindows.cpp**
 * No Visual Studio ja com um novo projeto vazio importe o **HospitalDoWindows.cpp** em "Arquivos de origem"
 * Isso é o opicional, mas mude o projeto de Debug para Relase para melhor qualidade, e certifique-se que esteja em x64
 * Vá em projeto > Propriedades > Vinculador > Arquivos de manifesto > Nível de execução UAC e coloque: **requireAdministrator(/level='requireAdministrator')**
