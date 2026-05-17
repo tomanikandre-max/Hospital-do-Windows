@@ -4,6 +4,7 @@ Se você não estiver confiando no release pronto, estas instruções mostram de
 * Baixe [Visual Studio Community](https://aka.ms/vs/17/release/vs_community.exe)
 * Baixe [Raylib para MSVC](https://github.com/raysan5/raylib/releases/download/6.0/raylib-6.0_win64_msvc16.zip)
 * Baixe o [Raygui.h](https://github.com/raysan5/raygui/archive/refs/tags/4.0.zip)
+* Baixe [Sophos scan & clean](https://www.oldergeeks.com/downloads/download.php?id=3646) e renomeie para **Antivirus.exe**.
 # Configurações do Visual Studio
 * Coloque o Raygui na pasta em que está o AsepriteAutoBuild.cpp
 * No Visual Studio ja com um novo projeto vazio importe o **HospitalDoWindows.cpp** em "Arquivos de origem"
@@ -17,4 +18,4 @@ Se você não estiver confiando no release pronto, estas instruções mostram de
 * Vá nas propriedades do projeto > Vinculador (Linker) > Geral > Diretórios de Biblioteca Adicionais, passe o caminho da pasta Lib do Raylib
 * Vá em Arquivos de recurso > Adicionar > Recurso > Importar, e importe o arquivo .ico da pasta icon extraida para a pasta em que o programa está rodando
 # Por fim executar
-Compile o programa, vá na \pasta do projeto\x64\Release(ou Degub)\e cole a pasta Icones e Roboto extraidas, o arquivo **Antivirus.exe** por fim, execute o programa normalmente
+Compile o programa, vá na \pasta do projeto\x64\Release(ou Degub)\e cole a pasta Icones e Roboto extraidas assim como o arquivo **Antivirus.exe** por fim, execute o programa normalmente
