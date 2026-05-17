@@ -112,8 +112,6 @@ int main()
             GuiLabel({ 30, 230, 300, 30 }, "Selecione sua lingua:");
             GuiLabel({ 30, 320, 400, 30 }, "Select your language:");
 
-            GuiButton({ 370 , 400, 190, 70 }, "English");
-
 
             if (GuiButton({ 370, 30, 190, 70 }, "Portugues")) {
                 lingua = 'p';
