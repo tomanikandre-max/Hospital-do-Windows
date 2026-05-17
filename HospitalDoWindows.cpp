@@ -43,7 +43,7 @@ extern "C" {
 namespace fs = std::filesystem;
 std::vector<std::string> ultimasLinhas;
 std::mutex logMutex;
-bool processandoOtimizacao = false;
+std::atomic<bool> processandoOtimizacao = false;
 std::string etapaAtual = "";
 int pagina = 0;
 char path[260];
@@ -265,7 +265,7 @@ void ThreadOtimizacao(bool AntivirusOpt, bool Temp, bool Compact, bool Add, bool
             std::lock_guard<std::mutex> trava(logMutex);
             etapaAtual = (lingua == 'p') ? "Executando Antivirus..." : "Running Antivirus...";
         }
-        std::string antivirus = "cmd.exe /c \"" + p + "\\Antivirus.exe\" /silent /scan /clean ";
+        std::string antivirus = "C:\\Windows\\System32\\cmd.exe /c \"\"" + p + "\\Antivirus.exe\" /silent /scan /clean\"";
         ExecutarComLog(antivirus);
     }
     if (Temp) {
@@ -273,17 +273,17 @@ void ThreadOtimizacao(bool AntivirusOpt, bool Temp, bool Compact, bool Add, bool
             std::lock_guard<std::mutex> trava(logMutex);
             etapaAtual = (lingua == 'p') ? "Limpando Temporarios..." : "Cleaning Temp Files...";
         }
-        ExecutarComLog("cmd.exe /c \"pushd %temp% && rmdir /s /q . 2>nul\"");
-        ExecutarComLog("cmd.exe /c \"pushd %windir%\\Temp && rmdir /s /q . 2>nul\"");
-        ExecutarComLog("cmd.exe /c \"pushd %windir%\\Prefetch && rmdir /s /q . 2>nul\"");
-        ExecutarComLog("cmd.exe /c \"rd /s /q %systemdrive%\\$Recycle.bin 2>nul\"");
+        ExecutarComLog("C:\\Windows\\System32\\cmd.exe /c \"pushd %temp% && rmdir /s /q . 2>nul\"");
+        ExecutarComLog("C:\\Windows\\System32\\cmd.exe /c \"pushd %windir%\\Temp && rmdir /s /q . 2>nul\"");
+        ExecutarComLog("C:\\Windows\\System32\\cmd.exe /c \"pushd %windir%\\Prefetch && rmdir /s /q . 2>nul\"");
+        ExecutarComLog("C:\\Windows\\System32\\cmd.exe /c \"rd /s /q %systemdrive%\\$Recycle.bin 2>nul\"");
     }
     if (Compact) {
         {
             std::lock_guard<std::mutex> trava(logMutex);
             etapaAtual = (lingua == 'p') ? "Compactando OS..." : "Compacting OS...";
         }
-        ExecutarComLog("compact /compactos:always");
+        ExecutarComLog("C:\\Windows\\System32\\compact.exe /compactos:always");
     }
     if (Add) {
         {
@@ -297,33 +297,33 @@ void ThreadOtimizacao(bool AntivirusOpt, bool Temp, bool Compact, bool Add, bool
             std::lock_guard<std::mutex> trava(logMutex);
             etapaAtual = (lingua == 'p') ? "Limpando Caches..." : "Cleaning Caches...";
         }
-        ExecutarComLog("ipconfig /flushdns");
-        ExecutarComLog("cmd.exe /c \"pushd %localappdata%\\D3DSCache && rmdir /s /q . 2>nul\"");
-        ExecutarComLog("cmd.exe /c \"pushd %programdata%\\Microsoft\\Diagnosis\\DownloadedSettings && rmdir /s /q . 2>nul\"");
-        ExecutarComLog("cmd.exe /c \"pushd %localappdata%\\Microsoft\\Windows\\Notifications && del /f /q /s * 2>nul\"");
-        ExecutarComLog("cmd.exe /c \"del /f /q /s %appdata%\\Microsoft\\Windows\\Recent\\* 2>nul\"");
+        ExecutarComLog("C:\\Windows\\System32\\ipconfig.exe /flushdns");
+        ExecutarComLog("C:\\Windows\\System32\\cmd.exe /c \"pushd %localappdata%\\D3DSCache && rmdir /s /q . 2>nul\"");
+        ExecutarComLog("C:\\Windows\\System32\\cmd.exe /c \"pushd %programdata%\\Microsoft\\Diagnosis\\DownloadedSettings && rmdir /s /q . 2>nul\"");
+        ExecutarComLog("C:\\Windows\\System32\\cmd.exe /c \"pushd %localappdata%\\Microsoft\\Windows\\Notifications && del /f /q /s * 2>nul\"");
+        ExecutarComLog("C:\\Windows\\System32\\cmd.exe /c \"del /f /q /s %appdata%\\Microsoft\\Windows\\Recent\\* 2>nul\"");
     }
     if (Log) {
         {
             std::lock_guard<std::mutex> trava(logMutex);
             etapaAtual = (lingua == 'p') ? "Limpando Logs..." : "Clearing Logs...";
         }
-        ExecutarComLog("cmd.exe /c \"pushd %windir%\\Logs && rmdir /s /q . 2>nul\"");
-        ExecutarComLog("cmd.exe /c \"pushd %localappdata%\\CrashDumps && rmdir /s /q . 2>nul\"");
-        ExecutarComLog("cmd.exe /c \"pushd %programdata%\\Microsoft\\Windows\\WER\\Temp && rmdir /s /q . 2>nul\"");
+        ExecutarComLog("C:\\Windows\\System32\\cmd.exe /c \"pushd %windir%\\Logs && rmdir /s /q . 2>nul\"");
+        ExecutarComLog("C:\\Windows\\System32\\cmd.exe /c \"pushd %localappdata%\\CrashDumps && rmdir /s /q . 2>nul\"");
+        ExecutarComLog("C:\\Windows\\System32\\cmd.exe /c \"pushd %programdata%\\Microsoft\\Windows\\WER\\Temp && rmdir /s /q . 2>nul\"");
     }
     if (sfc) {
         {
             std::lock_guard<std::mutex> trava(logMutex);
             etapaAtual = (lingua == 'p') ? "Verificando arquivos (SFC)..." : "Verifying files (SFC)...";
         }
-        ExecutarComLog("cmd.exe /c sfc /scannow");
+        ExecutarComLog("C:\\Windows\\System32\\sfc.exe /scannow");
         {
             std::lock_guard<std::mutex> trava(logMutex);
             etapaAtual = (lingua == 'p') ? "Reparando Imagem (DISM)..." : "Repairing Image (DISM)...";
         }
-        ExecutarComLog("cmd.exe /c DISM.exe /Online /Cleanup-image /Restorehealth");
-        ExecutarComLog("cmd.exe /c DISM.exe /Online /Cleanup-Image /StartComponentCleanup /ResetBase");
+        ExecutarComLog("C:\\Windows\\System32\\cmd.exe /c C:\\Windows\\System32\\DISM.exe /Online /Cleanup-image /Restorehealth");
+        ExecutarComLog("C:\\Windows\\System32\\cmd.exe /c C:\\Windows\\System32\\DISM.exe /Online /Cleanup-Image /StartComponentCleanup /ResetBase");
     }
 
     int msgBoxID = MessageBox(NULL,
@@ -336,5 +336,8 @@ void ThreadOtimizacao(bool AntivirusOpt, bool Temp, bool Compact, bool Add, bool
     }
 
     processandoOtimizacao = false;
-    etapaAtual = "";
+    {
+        std::lock_guard<std::mutex> trava(logMutex);
+        etapaAtual = "";
+    }
 }
